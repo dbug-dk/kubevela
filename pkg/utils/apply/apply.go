@@ -309,7 +309,7 @@ func createOrGetExisting(ctx context.Context, act *applyAction, c client.Client,
 				return nil, err
 			}
 		}
-		loggingApply("creating object", desired, act.quiet)
+		loggingApply("creating object", desired, false)
 		if act.dryRun {
 			return nil, errors.Wrap(c.Create(ctx, desired, client.DryRunAll), "cannot create object")
 		}
@@ -330,6 +330,7 @@ func createOrGetExisting(ctx context.Context, act *applyAction, c client.Client,
 
 	existing := &unstructured.Unstructured{}
 	existing.GetObjectKind().SetGroupVersionKind(desired.GetObjectKind().GroupVersionKind())
+	loggingApply("get object before creating", desired, false)
 	err := c.Get(ctx, types.NamespacedName{Name: desired.GetName(), Namespace: desired.GetNamespace()}, existing)
 	if kerrors.IsNotFound(err) {
 		return create()

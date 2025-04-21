@@ -77,7 +77,7 @@ func (h *resourceKeeper) Dispatch(ctx context.Context, manifests []*unstructured
 		if err = h.dispatch(ctx,
 			velaslices.Map(manifests, func(manifest *unstructured.Unstructured) *unstructured.Unstructured { return manifest.DeepCopy() }),
 			append([]apply.ApplyOption{apply.DryRunAll()}, opts...)); err != nil {
-			return fmt.Errorf("pre-dispatch dryrun failed: %w", err)
+			return fmt.Errorf("pre-dispatch dryrun failed: %v, %w", opts, err)
 		}
 	}
 	// 2. record manifests in resourcetracker

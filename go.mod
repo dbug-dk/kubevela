@@ -51,7 +51,7 @@ require (
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/onsi/ginkgo/v2 v2.19.0
 	github.com/onsi/gomega v1.34.1
-	github.com/openkruise/kruise-api v1.4.0
+	github.com/openkruise/kruise-api v1.5.0
 	github.com/openkruise/rollouts v0.3.0
 	github.com/pelletier/go-toml v1.9.5
 	github.com/pkg/errors v0.9.1
