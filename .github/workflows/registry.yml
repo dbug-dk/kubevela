@@ -167,7 +167,6 @@ jobs:
         run: |
           echo "signing vela CLI images..."
           cosign sign --yes ghcr.io/${{ github.repository_owner }}/oamdev/vela-cli@${{ steps.meta-vela-cli.outputs.digest }}
-          cosign sign --yes docker.io/oamdev/vela-cli@${{ steps.meta-vela-cli.outputs.digest }}      
 
           echo "attesting SBOM against the vela cli image..."
           cosign attest --yes --predicate ${{ github.workspace }}/sbom-vela-cli.spdx.json --type spdx \
