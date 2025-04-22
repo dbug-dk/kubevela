@@ -45,7 +45,11 @@ jobs:
           VERSION=${GITHUB_REF#refs/tags/}
           if [[ ${GITHUB_REF} == "refs/heads/master" ]]; then
             VERSION=latest
-          fi
+          elif [[ ${GITHUB_REF} =~ ^refs/heads/ ]]; then  
+            branch_name=${GITHUB_REF#refs/heads/}
+            timestamp=$(date "+%Y%m%d%H%M%S")           
+            VERSION="${branch_name}-${timestamp}"      
+          fi 
           echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
 
       - name: Get git revision
